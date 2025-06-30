@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd'
-import { GripVertical, Trash2, Edit3, Smartphone, Settings, Eye } from 'lucide-react'
+import { GripVertical, Trash2, Smartphone, Settings, Eye } from 'lucide-react'
 import { Product, LayoutSettings } from '../types'
 
 interface ProductManagerProps {
@@ -12,7 +12,6 @@ interface ProductManagerProps {
 }
 
 const ProductManager: React.FC<ProductManagerProps> = ({
-  products,
   selectedProducts,
   onProductsUpdated,
   onLayoutGenerated,
@@ -29,15 +28,6 @@ const ProductManager: React.FC<ProductManagerProps> = ({
   })
 
   const [showSettings, setShowSettings] = useState(false)
-
-  const handleToggleSelection = (productId: string) => {
-    const updatedProducts = selectedProducts.map(product =>
-      product.id === productId
-        ? { ...product, isSelected: !product.isSelected }
-        : product
-    )
-    onProductsUpdated(updatedProducts.filter(p => p.isSelected))
-  }
 
   const handleDragEnd = (result: any) => {
     if (!result.destination) return

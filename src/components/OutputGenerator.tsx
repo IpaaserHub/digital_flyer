@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Download, FileImage, FileText, Code, Share2 } from 'lucide-react'
+import { FileImage, FileText, Code, Share2 } from 'lucide-react'
 import { Product } from '../types'
 import html2canvas from 'html2canvas'
 import jsPDF from 'jspdf'

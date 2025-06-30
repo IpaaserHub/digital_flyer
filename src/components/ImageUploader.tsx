@@ -1,5 +1,5 @@
 import React, { useState, useRef } from 'react'
-import { Upload, FileImage, Loader2, Crop, Settings } from 'lucide-react'
+import { Upload, FileImage, Loader2, Crop } from 'lucide-react'
 import { Product } from '../types'
 import { cropImageRegion, ImageRegion, getImageMetadata } from '../utils/imageProcessor'
 import RegionSelector from './RegionSelector'

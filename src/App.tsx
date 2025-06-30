@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 import ImageUploader from './components/ImageUploader'
 import ProductManager from './components/ProductManager'
 import Preview from './components/Preview'

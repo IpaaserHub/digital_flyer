@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react'
-import { Crop, Move } from 'lucide-react'
+import { Crop } from 'lucide-react'
 import { ImageRegion } from '../utils/imageProcessor'
 
 interface RegionSelectorProps {
@@ -203,8 +203,6 @@ const RegionSelector: React.FC<RegionSelectorProps> = ({
 
   const handleMouseDown = (e: React.MouseEvent) => {
     const mousePos = getMousePos(e)
-    const scaleX = imageSize.width / canvasSize.width
-    const scaleY = imageSize.height / canvasSize.height
 
     // リサイズハンドルのチェック
     const handle = getResizeHandle(mousePos)
@@ -240,8 +238,6 @@ const RegionSelector: React.FC<RegionSelectorProps> = ({
 
   const handleMouseMove = (e: React.MouseEvent) => {
     const mousePos = getMousePos(e)
-    const scaleX = imageSize.width / canvasSize.width
-    const scaleY = imageSize.height / canvasSize.height
 
     // カーソルスタイルを更新
     const cursorStyle = getCursorStyle(mousePos)
@@ -252,8 +248,8 @@ const RegionSelector: React.FC<RegionSelectorProps> = ({
     if (isResizing && selectedRegion !== null && resizeHandle) {
       const newRegions = [...regions]
       const region = newRegions[selectedRegion]
-      const deltaX = (mousePos.x - dragStart.x) * scaleX
-      const deltaY = (mousePos.y - dragStart.y) * scaleY
+      const deltaX = (mousePos.x - dragStart.x) * (imageSize.width / canvasSize.width)
+      const deltaY = (mousePos.y - dragStart.y) * (imageSize.height / canvasSize.height)
 
       switch (resizeHandle) {
         case 'nw':
@@ -288,8 +284,8 @@ const RegionSelector: React.FC<RegionSelectorProps> = ({
       setDragStart(mousePos)
     } else if (isDragging && selectedRegion !== null) {
       const newRegions = [...regions]
-      const newX = Math.max(0, (mousePos.x - dragStart.x) * scaleX)
-      const newY = Math.max(0, (mousePos.y - dragStart.y) * scaleY)
+      const newX = Math.max(0, (mousePos.x - dragStart.x) * (imageSize.width / canvasSize.width))
+      const newY = Math.max(0, (mousePos.y - dragStart.y) * (imageSize.height / canvasSize.height))
 
       newRegions[selectedRegion] = {
         ...newRegions[selectedRegion],
